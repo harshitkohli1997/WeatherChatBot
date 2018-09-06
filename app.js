@@ -7,9 +7,25 @@ const rl = Readline.createInterface({
 });
 console.log('app is running ####');
 
+const matcher = require('./matcher');
 rl.setPrompt('> ');
 rl.prompt();
 rl.on('line',reply => {
-    console.log(`You said ${reply}`);
-    rl.prompt();
+    matcher(reply,data => {
+    switch(data.intent){
+        case 'Hello':
+        console.log("Big hello from bot");
+        rl.prompt();
+        break;
+        case 'Exit':
+        console.log("Bye");
+        process.exit(0);
+        break;
+        default: {
+            console.log("i don't know what you mean :(");
+            rl.prompt();
+        }
+    }
+    })
+   
 });
