@@ -14,7 +14,7 @@ rl.on('line',reply => {
     matcher(reply,data => {
     switch(data.intent){
         case 'Hello':
-        console.log("Big hello from bot");
+        console.log(`${data.entities.greeting} to you too`);
         rl.prompt();
         break;
         case 'Exit':
