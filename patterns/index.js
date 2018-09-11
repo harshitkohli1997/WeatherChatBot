@@ -4,7 +4,7 @@ const patternDict = [{
 },
 {
     pattern:'\\b(bye|exit)\\b',
-    intent:'Exit'
+    intent:'Exit',
 }
 ];
 
