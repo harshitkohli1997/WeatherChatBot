@@ -21,6 +21,10 @@ rl.on('line',reply => {
         console.log("Bye");
         process.exit(0);
         break;
+        case 'CurrentWeather':
+          console.log(`Checking weather for ${data.entities.city}....`);
+          rl.prompt()
+          break;
         default: {
             console.log("i don't know what you mean :(");
             rl.prompt();
