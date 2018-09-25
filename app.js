@@ -9,6 +9,7 @@ console.log('app is running ####');
 
 const matcher = require('./matcher');
 const weather = require('./weather');
+const {currentWeather} = require('./parser')
 rl.setPrompt('> ');
 rl.prompt();
 rl.on('line',reply => {
@@ -23,15 +24,17 @@ rl.on('line',reply => {
         process.exit(0);
         break;
         case 'CurrentWeather':
-
+       
           console.log(`let me check ....`);
           weather(data.entities.city,'current')
           .then(response => {
-              console.log(response);
+              let parseResult = currentWeather(response);
+              console.log(parseResult);
               rl.prompt()
           })
           .catch(error => {
-              console.log("There seem to be a problem connecting tot he Weather service");
+              console.log(error)
+              console.log("There seem to be a problem connecting to the Weather service");
               rl.prompt()
           })
           rl.prompt()
