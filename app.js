@@ -8,6 +8,7 @@ const rl = Readline.createInterface({
 console.log('app is running ####');
 
 const matcher = require('./matcher');
+const weather = require('./weather');
 rl.setPrompt('> ');
 rl.prompt();
 rl.on('line',reply => {
@@ -22,7 +23,17 @@ rl.on('line',reply => {
         process.exit(0);
         break;
         case 'CurrentWeather':
-          console.log(`Checking weather for ${data.entities.city}....`);
+
+          console.log(`let me check ....`);
+          weather(data.entities.city,'current')
+          .then(response => {
+              console.log(response);
+              rl.prompt()
+          })
+          .catch(error => {
+              console.log("There seem to be a problem connecting tot he Weather service");
+              rl.prompt()
+          })
           rl.prompt()
           break;
         default: {
